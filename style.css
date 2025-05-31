@@ -1,0 +1,159 @@
+ body {
+
+   font-family: Arial, sans-serif;
+   padding: 20px;
+ }
+
+ .device-filters {
+   display: flex;
+   gap: 10px;
+   flex-wrap: wrap;
+ }
+
+ .device-btn {
+   display: flex;
+   align-items: center;
+   gap: 6px;
+   padding: 8px 14px;
+   border: 1px solid #ccc;
+   border-radius: 20px;
+   background-color: white;
+   color: #444;
+   cursor: pointer;
+   font-size: 14px;
+   transition: 0.2s ease;
+ }
+
+ .device-btn.selected {
+   background-color: #e0f2ec;
+   border-color: transparent;
+   color: #056449;
+   font-weight: bold;
+ }
+
+ .device-btn svg {
+   width: 16px;
+   height: 16px;
+   fill: currentColor;
+ }
+
+ body {
+   font-family: Arial, sans-serif;
+   padding: 30px;
+ }
+
+ .menu {
+   display: flex;
+   gap: 30px;
+   font-size: 16px;
+   font-weight: 500;
+   color: #555;
+ }
+
+ .menu-item {
+   position: relative;
+   cursor: pointer;
+ }
+
+ .menu-item.active {
+   color: #01875f;
+ }
+
+ .menu-item.active::after {
+   content: "";
+   position: absolute;
+   bottom: -6px;
+   left: 0;
+   width: 100%;
+   height: 2px;
+   background-color: #01875f;
+   border-radius: 1px;
+ }
+
+ body {
+   .card-container {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 10px;
+     justify-content: center;
+   }
+
+   .card {
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     padding: 10px;
+     width: 120px;
+     text-align: center;
+     background-color: #f9f9f9;
+   }
+
+   .card img {
+     width: 50px;
+     height: 50px;
+   }
+
+   .card p {
+     margin: 5px 0;
+     font-size: 14px;
+   }
+ }
+
+ body {
+   font-family: Arial, sans-serif;
+   margin: 20px;
+ }
+
+ h1 {
+   text-align: center;
+ }
+
+ .app-list {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 20px;
+   justify-content: center;
+ }
+
+ .app {
+   text-align: center;
+   width: 150px;
+ }
+
+ .app a {
+   text-decoration: none;
+   color: #007bff;
+ }
+
+ .app a:hover {
+   text-decoration: underline;
+ }
+
+ body {
+   font-family: Arial, sans-serif;
+   margin: 20px;
+ }
+
+ h1 {
+   text-align: center;
+ }
+
+ .app-list {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 20px;
+   justify-content: center;
+ }
+
+ .app {
+   text-align: center;
+   width: 150px;
+ }
+
+ .app a {
+   text-decoration: none;
+   color: #007bff;
+ }
+
+ .app a:hover {
+   text-decoration: underline;
+ }

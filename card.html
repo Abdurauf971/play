@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ilovalar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 140px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .card .name {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .card .rating {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .menu {
+            display: flex;
+            gap: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .menu-item.active {
+            color: #01875f;
+        }
+
+        .menu-item.active::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #01875f;
+            border-radius: 1px;
+        }
+
+        .device-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .device-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            background-color: white;
+            color: #444;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .device-btn.selected {
+            background-color: #e0f2ec;
+            border-color: transparent;
+            color: #056449;
+            font-weight: bold;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .modal-content h3 {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .modal-content p {
+            margin: 10px 0;
+        }
+
+        .modal-content a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .modal-content a:hover {
+            text-decoration: underline;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <div class="menu-item">Игры</div>
+        <div class="menu-item active">Приложения</div>
+        <div class="menu-item">Книги</div>
+        <div class="menu-item">Детям</div>
+    </div>
+
+    <div class="device-filters">
+        <div class="device-btn selected">📱 Телефон</div>
+        <div class="device-btn">📲 Планшет</div>
+        <div class="device-btn">📺 ТВ</div>
+        <div class="device-btn">💻 Chromebook</div>
+        <div class="device-btn">⌚ Часы</div>
+        <div class="device-btn">🚗 Автомобиль</div>
+    </div>
+
+    <div class="section">
+        <h1>Популярные приложения</h1>
+        <h2>📱 Публикация фото и видео</h2>
+        <div class="card-container">
+            <div class="card" onclick="showModal('Instagram', 'A social media platform for sharing photos and videos.', 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png', '4.5', 'https://play.google.com/store/apps/details?id=com.instagram.android')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                <div class="name">Instagram</div>
+                <div class="rating">⭐ 4.5</div>
+            </div>
+            <div class="card" onclick="showModal('Instagram Lite', 'A lighter version of Instagram with reduced data usage.', 'https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf', '4.1', 'https://play.google.com/store/apps/details?id=com.instagram.lite')">
+                <img src="https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf" alt="Instagram Lite">
+                <div class="name">Instagram Lite</div>
+                <div class="rating">⭐ 4.1</div>
+            </div>
+            <div class="card" onclick="showModal('Telegram', 'Secure messaging app with cloud-based chats.', 'https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg', '4.3', 'https://play.google.com/store/apps/details?id=org.telegram.messenger')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+                <div class="name">Telegram</div>
+                <div class="rating">⭐ 4.3</div>
+            </div>
+            <div class="card" onclick="showModal('WhatsApp', 'Popular messaging app for text, voice, and video calls.', 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg', '4.5', 'https://play.google.com/store/apps/details?id=com.whatsapp')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                <div class="name">WhatsApp</div>
+                <div class="rating">⭐ 4.5</div>
+            </div>
+            <div class="card" onclick="showModal('Snapchat', 'Share photos and videos that disappear after viewing.', 'https://prod2-sprcdn-assets.sprinklr.com/50400/2b4a85a6-48ef-40a9-a912-d1e1a3375e68-226396087/Snapchat-logo.jpg', '4.3', 'https://play.google.com/store/apps/details?id=com.snapchat.android')">
+                <img src="https://prod2-sprcdn-assets.sprinklr.com/50400/2b4a85a6-48ef-40a9-a912-d1e1a3375e68-226396087/Snapchat-logo.jpg" alt="Snapchat">
+                <div class="name">Snapchat</div>
+                <div class="rating">⭐ 4.3</div>
+            </div>
+        </div>
+
+        <h2>🖼 Социальные сети</h2>
+        <div class="card-container">
+            <div class="card" onclick="showModal('Snapchat', 'Share photos and videos that disappear after viewing.', 'https://prod2-sprcdn-assets.sprinklr.com/50400/2b4a85a6-48ef-40a9-a912-d1e1a3375e68-226396087/Snapchat-logo.jpg', '4.3', 'https://play.google.com/store/apps/details?id=com.snapchat.android')">
+                <img src="https://prod2-sprcdn-assets.sprinklr.com/50400/2b4a85a6-48ef-40a9-a912-d1e1a3375e68-226396087/Snapchat-logo.jpg" alt="Snapchat">
+                <div class="name">Snapchat</div>
+                <div class="rating">⭐ 4.3</div>
+            </div>
+            <div class="card" onclick="showModal('Pinterest', 'Discover and save ideas for inspiration.', 'https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png', '4.7', 'https://play.google.com/store/apps/details?id=com.pinterest')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" alt="Pinterest">
+                <div class="name">Pinterest</div>
+                <div class="rating">⭐ 4.7</div>
+            </div>
+            <div class="card" onclick="showModal('Threads', 'Instagram\'s text-based conversation app.', 'https://i.pinimg.com/originals/f7/63/6a/f7636ad941d4c62c1667a0b6bda6cbd4.jpg', '4.4', 'https://play.google.com/store/apps/details?id=com.instagram.barcelona')">
+                <img src="https://i.pinimg.com/originals/f7/63/6a/f7636ad941d4c62c1667a0b6bda6cbd4.jpg" alt="Threads">
+                <div class="name">Threads</div>
+                <div class="rating">⭐ 4.4</div>
+            </div>
+            <div class="card" onclick="showModal('Likee', 'Create and share short videos with effects.', 'https://i.pinimg.com/originals/78/69/8a/78698ad28329cb6bab5e2111db959f43.png', '4.4', 'https://play.google.com/store/apps/details?id=video.like')">
+                <img src="https://i.pinimg.com/originals/78/69/8a/78698ad28329cb6bab5e2111db959f43.png" alt="Likee">
+                <div class="name">Likee</div>
+                <div class="rating">⭐ 4.4</div>
+            </div>
+            <div class="card" onclick="showModal('Bigo Live', 'Live streaming and video chat platform.', 'https://avatars.mds.yandex.net/i?id=b5043b834ed335d350ee88a94e5ee90d_l-4120750-images-thumbs&n=13', '4.6', 'https://play.google.com/store/apps/details?id=sg.bigo.live')">
+                <img src="https://avatars.mds.yandex.net/i?id=b5043b834ed335d350ee88a94e5ee90d_l-4120750-images-thumbs&n=13" alt="Bigo Live">
+                <div class="name">Bigo Live</div>
+                <div class="rating">⭐ 4.6</div>
+            </div>
+            <div class="card" onclick="showModal('TikTok Lite', 'A lighter version of TikTok for short videos.', 'https://cdn-www.bluestacks.com/bs-images/featured_com.zhiliaoapp.musically.go.jpg', '4.1', 'https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go')">
+                <img src="https://cdn-www.bluestacks.com/bs-images/featured_com.zhiliaoapp.musically.go.jpg" alt="TikTok Lite">
+                <div class="name">TikTok Lite</div>
+                <div class="rating">⭐ 4.1</div>
+            </div>
+        </div>
+
+        <h2>Общение и связь</h2>
+        <div class="card-container">
+            <div class="card" onclick="showModal('TikTok', 'Create and watch short, entertaining videos.', 'https://avatars.mds.yandex.net/i?id=08290293562f41158298bc5d12146706b397d89fe481449a-5286188-images-thumbs&n=13', '4.3', 'https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically')">
+                <img src="https://avatars.mds.yandex.net/i?id=08290293562f41158298bc5d12146706b397d89fe481449a-5286188-images-thumbs&n=13" alt="TikTok">
+                <div class="name">TikTok</div>
+                <div class="rating">⭐ 4.3</div>
+            </div>
+            <div class="card" onclick="showModal('Telegram X', 'A faster alternative to Telegram with enhanced features.', 'https://sun9-26.userapi.com/s/v1/if1/KxKdaKRb8xDVeqQEgJnSJB3mFhPjZoQdC0TceF7cW0S_HCtzbhXSJ1tT2FD7lqWk-5-K9SOJ.jpg?size=600x375&quality=96&type=album', '4.0', 'https://play.google.com/store/apps/details?id=org.thunderdog.challegram')">
+                <img src="https://sun9-26.userapi.com/s/v1/if1/KxKdaKRb8xDVeqQEgJnSJB3mFhPjZoQdC0TceF7cW0S_HCtzbhXSJ1tT2FD7lqWk-5-K9SOJ.jpg?size=600x375&quality=96&type=album" alt="Telegram X">
+                <div class="name">Telegram X</div>
+                <div class="rating">⭐ 4.0</div>
+            </div>
+            <div class="card" onclick="showModal('Одноклассники', 'Russian social network for connecting with friends.', 'https://avatars.mds.yandex.net/i?id=0d7e151de833f86c2c9f6494f71b8836aba74bf1-8970800-images-thumbs&n=13', '4.8', 'https://play.google.com/store/apps/details?id=ru.ok.android')">
+                <img src="https://avatars.mds.yandex.net/i?id=0d7e151de833f86c2c9f6494f71b8836aba74bf1-8970800-images-thumbs&n=13" alt="OK">
+                <div class="name">Одноклассники</div>
+                <div class="rating">⭐ 4.8</div>
+            </div>
+            <div class="card" onclick="showModal('Facebook', 'Connect with friends and share updates.', 'https://avatars.mds.yandex.net/i?id=ec5199a2b2db411054114ee6b411777f_l-5297706-images-thumbs&n=13', '4.7', 'https://play.google.com/store/apps/details?id=com.facebook.katana')">
+                <img src="https://avatars.mds.yandex.net/i?id=ec5199a2b2db411054114ee6b411777f_l-5297706-images-thumbs&n=13" alt="Facebook">
+                <div class="name">Facebook</div>
+                <div class="rating">⭐ 4.7</div>
+            </div>
+            <div class="card" onclick="showModal('Payme', 'Mobile payment app for Uzbekistan.', 'https://avatars.mds.yandex.net/i?id=01dba94061c9fad78d9b8b4b7cead4d08ba8cf11-4238926-images-thumbs&n=13', '4.6', 'https://play.google.com/store/apps/details?id=uz.dida.payme')">
+                <img src="https://avatars.mds.yandex.net/i?id=01dba94061c9fad78d9b8b4b7cead4d08ba8cf11-4238926-images-thumbs&n=13" alt="Payme">
+                <div class="name">Payme</div>
+                <div class="rating">⭐ 4.6</div>
+            </div>
+            <div class="card" onclick="showModal('TikTok Lite', 'A lighter version of TikTok for short videos.', 'https://cdn-www.bluestacks.com/bs-images/featured_com.zhiliaoapp.musically.go.jpg', '4.1', 'https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically.go')">
+                <img src="https://cdn-www.bluestacks.com/bs-images/featured_com.zhiliaoapp.musically.go.jpg" alt="TikTok Lite">
+                <div class="name">TikTok Lite</div>
+                <div class="rating">⭐ 4.1</div>
+            </div>
+            <div class="card" onclick="showModal('Remini', 'AI-powered photo enhancement app.', 'https://avatars.mds.yandex.net/i?id=7eaf61b260aeeecf9216522177a42f34_l-4571839-images-thumbs&n=13', '4.5', 'https://play.google.com/store/apps/details?id=com.bigwinepot.nwdn')">
+                <img src="https://avatars.mds.yandex.net/i?id=7eaf61b260aeeecf9216522177a42f34_l-4571839-images-thumbs&n=13" alt="Remini">
+                <div class="name">Remini</div>
+                <div class="rating">⭐ 4.5</div>
+            </div>
+            <div class="card" onclick="showModal('Vidogram', 'Enhanced version of Telegram with additional features.', 'https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf', '4.0', 'https://play.google.com/store/apps/details?id=org.vidogram.messenger')">
+                <img src="https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf" alt="Vidogram">
+                <div class="name">Vidogram</div>
+                <div class="rating">⭐ 4.0</div>
+            </div>
+        </div>
+
+        <h2>Бизнес-инструменты</h2>
+        <div class="card-container">
+            <div class="card" onclick="showModal('LinkedIn', 'Professional networking and job search platform.', 'https://i.pinimg.com/originals/64/8c/f6/648cf6844ad57c6b44d6eca38b2611df.png', '4.3', 'https://play.google.com/store/apps/details?id=com.linkedin.android')">
+                <img src="https://i.pinimg.com/originals/64/8c/f6/648cf6844ad57c6b44d6eca38b2611df.png" alt="LinkedIn">
+                <div class="name">LinkedIn</div>
+                <div class="rating">⭐ 4.3</div>
+            </div>
+            <div class="card" onclick="showModal('CamScanner', 'Scan and share documents as PDFs.', 'https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf', '4.8', 'https://play.google.com/store/apps/details?id=com.scannerapp')">
+                <img src="https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf" alt="CamScanner">
+                <div class="name">CamScanner</div>
+                <div class="rating">⭐ 4.8</div>
+            </div>
+            <div class="card" onclick="showModal('Microsoft PowerPoint', 'Create and edit presentations on the go.', 'https://avatars.mds.yandex.net/i?id=46025a2c7e7fa783ab81491a7eec9eaf_l-5345859-images-thumbs&n=13', '4.6', 'https://play.google.com/store/apps/details?id=com.microsoft.office.powerpoint')">
+                <img src="https://avatars.mds.yandex.net/i?id=46025a2c7e7fa783ab81491a7eec9eaf_l-5345859-images-thumbs&n=13" alt="Microsoft PowerPoint">
+                <div class="name">Microsoft PowerPoint</div>
+                <div class="rating">⭐ 4.6</div>
+            </div>
+            <div class="card" onclick="showModal('hh', 'Job search and recruitment platform.', 'https://www.finam.ru/files/publications/1411429/Screenshot%202023-01-26%20at%2008.19.27.jpg', '4.9', 'https://play.google.com/store/apps/details?id=ru.hh.android')">
+                <img src="https://www.finam.ru/files/publications/1411429/Screenshot%202023-01-26%20at%2008.19.27.jpg" alt="hh">
+                <div class="name">hh</div>
+                <div class="rating">⭐ 4.9</div>
+            </div>
+            <div class="card" onclick="showModal('Яндекс Драйвер', 'App for Yandex taxi drivers.', 'https://avatars.mds.yandex.net/i?id=ec5d526d5b2380bafcea9dd07a92b53d76269ee2-5231899-images-thumbs&n=13', '4.9', 'https://play.google.com/store/apps/details?id=com.yandex.driver')">
+                <img src="https://avatars.mds.yandex.net/i?id=ec5d526d5b2380bafcea9dd07a92b53d76269ee2-5231899-images-thumbs&n=13" alt="Яндекс Драйвер">
+                <div class="name">Яндекс Драйвер</div>
+                <div class="rating">⭐ 4.9</div>
+            </div>
+            <div class="card" onclick="showModal('Samsung Email', 'Email client for Samsung devices.', 'https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf', '4.4', 'https://play.google.com/store/apps/details?id=com.samsung.android.email.provider')">
+                <img src="https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf" alt="Samsung Email">
+                <div class="name">Samsung Email</div>
+                <div class="rating">⭐ 4.4</div>
+            </div>
+            <div class="card" onclick="showModal('WhatsApp Business', 'Messaging app for small businesses.', 'https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf', '4.4', 'https://play.google.com/store/apps/details?id=com.whatsapp.w4b')">
+                <img src="https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf" alt="WhatsApp Business">
+                <div class="name">WhatsApp Business</div>
+                <div class="rating">⭐ 4.4</div>
+            </div>
+        </div>
+
+        <h2>Топ бесплатных</h2>
+        <div class="card-container">
+            <div class="card" onclick="showModal('ChatGPT', 'AI-powered conversational assistant.', 'data:image/png;base64,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', '4.7', 'https://play.google.com/store/apps/details?id=com.openai.chatgpt')">
+                <img src="data:image/png;base64,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' alt="ChatGPT">
+                <div class="name">ChatGPT</div>
+                <div class="rating">⭐ 4.7</div>
+            </div>
+            <div class="card" onclick="showModal('Instagram', 'A social media platform for sharing photos and videos.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMgfKNwFj7O66Qn-tIw87Yzo1A3DNh9rGq5g&s', '4.5', 'https://play.google.com/store/apps/details?id=com.instagram.android')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMgfKNwFj7O66Qn-tIw87Yzo1A3DNh9rGq5g&s" alt="Instagram">
+                <div class="name">Instagram</div>
+                <div class="rating">⭐ 4.5</div>
+            </div>
+            <div class="card" onclick="showModal('Telegram', 'Secure messaging app with cloud-based chats.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/1200px-Telegram_2019_Logo.svg.png', '4.3', 'https://play.google.com/store/apps/details?id=org.telegram.messenger')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/1200px-Telegram_2019_Logo.svg.png" alt="Telegram">
+                <div class="name">Telegram</div>
+                <div class="rating">⭐ 4.3</div>
+            </div>
+            <div class="card" onclick="showModal('WhatsApp Messenger', 'Popular messaging app for text, voice, and video calls.', 'https://play-lh.googleusercontent.com/bYtqbOcTYOlgc6gqZ2rwb8lptHuwlNE75zYJu6Bn076-hTmvd96HH-6v7S0YUAAJXoJN', '4.3', 'https://play.google.com/store/apps/details?id=com.whatsapp')">
+                <img src="https://play-lh.googleusercontent.com/bYtqbOcTYOlgc6gqZ2rwb8lptHuwlNE75zYJu6Bn076-hTmvd96HH-6v7S0YUAAJXoJN" alt="WhatsApp Messenger">
+                <div class="name">WhatsApp Messenger</div>
+                <div class="rating">⭐ 4.3</div>
+            </div>
+            <div class="card" onclick="showModal('Uzum Market', 'Online shopping platform for Uzbekistan.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxo_91HAs183cBtZYWjYfLmNO20-mhaNpjRw&s', '4.1', 'https://play.google.com/store/apps/details?id=uz.uzum.app')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxo_91HAs183cBtZYWjYfLmNO20-mhaNpjRw&s" alt="Uzum Market">
+                <div class="name">Uzum Market</div>
+                <div class="rating">⭐ 4.1</div>
+            </div>
+            <div class="card" onclick="showModal('Instagram Lite', 'A lighter version of Instagram with reduced data usage.', 'https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf', '4.1', 'https://play.google.com/store/apps/details?id=com.instagram.lite')">
+                <img src="https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf" alt="Instagram Lite">
+                <div class="name">Instagram Lite</div>
+                <div class="rating">⭐ 4.1</div>
+            </div>
+            <div class="card" onclick="showModal('Soliq', 'Tax management app for Uzbekistan.', 'https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf', '4.5', 'https://play.google.com/store/apps/details?id=uz.soliq.app')">
+                <img src="https://play-lh.googleusercontent.com/WsnTVMB-ichRSKymTZ13f8M_Q_4XlfgofdYk3V4JsFe7J4nxYZ8J_YUZQxmWjs4zsYIf" alt="Soliq">
+                <div class="name">Soliq</div>
+                <div class="rating">⭐ 4.5</div>
+            </div>
+            <div class="card" onclick="showModal('CapCut', 'Video editing app with powerful tools.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn=Inno9GcThSJBCskeePx28oOeiJm3a02TrkeFV-XsfaQ&s', '4.0', 'https://play.google.com/store/apps/details?id=com.lemon.lvoverseas')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?qtxn:ANd9GcThSJBCskeePx28oOeiJm3a02TrkeFV-XsfaQ&s" alt="CapCut">
+                <div class="name">CapCut</div>
+                <div class="rating">⭐ 4.0</div>
+            </div>
+            <div class="card" onclick="showModal('Snapchat', 'Share photos and videos that disappear after viewing.', 'https://prod2-sprcdn-assets.sprinklr.com/50400/2b4a85a6-48ef-40a9-a912-d1e1a3375e68-226396087/Snapchat-logo.jpg', '4.3', 'https://play.google.com/store/apps/details?id=com.snapchat.android')">
+                <img src="https://prod2-sprcdn-assets.sprinklr.com/50400/2b4a85a6-48ef-40a9-a912-d1e1a3375e68-226396087/Snapchat-logo.jpg" alt="Snapchat">
+                <div class="name">Snapchat</div>
+                <div class="rating">⭐ 4.3</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="appModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">×</span>
+            <img id="modalImage" src="" alt="">
+            <h3 id="modalTitle"></h3>
+            <p id="modalDescription"></p>
+            <p id="modalRating"></p>
+            <a id="modalLink" href="" target="_blank">Download from Google Play</a>
+        </div>
+    </div>
+
+<script src="db.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Play Market</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header img {
+            height: 40px;
+        }
+
+        .search-bar {
+            width: 50%;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            padding: 10px 20px;
+            background-color: #fff;
+        }
+
+        .category-btn {
+            padding: 5px 15px;
+            border: none;
+            background-color: #e0e0e0;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        .category-btn.active {
+            background-color: #4285f4;
+            color: white;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .app-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: none;
+            height: 100%;
+            /* Убедимся, что карта занимает всё доступное пространство */
+        }
+
+        .app-card.active {
+            display: block;
+        }
+
+        .app-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px 5px 0 0;
+            /* Скругление только верхних углов */
+        }
+
+        .app-card .card-content {
+            padding: 10px 0;
+        }
+
+        .app-card h3 {
+            font-size: 21px;
+            margin: 7.5px 0;
+            white-space: nowrap;
+            /* Предотвращаем перенос строки */
+            overflow: hidden;
+            /* Скрываем текст, если он не помещается */
+            text-overflow: ellipsis;
+            /* Добавляем многоточие для обрезанного текста */
+        }
+
+        .app-card p {
+            font-size: 18px;
+            color: #757575;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <img src="https://i.ytimg.com/vi/cm3nlsWPoO4/maxresdefault.jpg" alt="Logo">
+        <input type="text" class="search-bar" placeholder="Поиск приложений...">
+    </div>
+    <div class="categories">
+        <button  class="category-btn active" onclick="filterApps('free')">Топ бесплатных</button>
+        <a href="./card.html" class="category-btn" onclick="filterApps('paid')">Топ платных</button>
+    </div>
+    <div class="app-grid" id="appGrid">
+        <!-- Бесплатные приложения -->
+        <div class="app-card active" data-type="free">
+            <img src="https://avatars.mds.yandex.net/i?id=e218026bbb172271f2a86a32555c617b_l-10591076-images-thumbs&n=13"
+                alt="Mobile Legends">
+            <div class="card-content">
+                <h3>MObile Legends</h3>
+                <p>4.5 ★</p>
+            </div>
+        </div>
+        <div class="app-card active" data-type="free">
+            <img src="https://cdn1.epicgames.com/offer/fn/FNBR_35-00_C6MS1_EGS_Launcher_KeyArt_FN_Blade_2560x1440_2560x1440-8fd35061502b51f1df276474d28e7f59"
+                alt="Fortnite">
+            <div class="card-content">
+                <h3>Fortnite</h3>
+                <p>4.5 ★</p>
+            </div>
+        </div>
+        <div class="app-card active" data-type="free">
+            <img src="https://cybersport-img.cdnvideo.ru/images/og-jpg/plain/55/5578be93-44ba-40b2-bc70-0a8415602aa7.jpg"
+                alt="Call of Duty: Warzone">
+            <div class="card-content">
+                <h3>Call of Duty: Warzone</h3>
+                <p>4.5 ★</p>
+            </div>
+        </div>
+        <div class="app-card active" data-type="free">
+            <img src="https://i.ytimg.com/vi/z-ZQznjvctE/maxresdefault.jpg" alt="FIFA 24">
+            <div class="card-content">
+                <h3>FIFA 24</h3>
+                <p>4.5 ★</p>
+            </div>
+        </div>
+        <div class="app-card active" data-type="free">
+            <img src="https://img.championat.com/s/1350x900/news/big/u/e/league-of-legends-wild-rift-priznali-igroj-goda-v-app-store_1638437807507566055.jpg"
+                alt="League of Legends">
+            <div class="card-content">
+                <h3>League of Legends</h3>
+                <p>4.5 ★</p>
+            </div>
+        </div>
+        <div class="app-card active" data-type="free">
+            <img src="https://i.pinimg.com/originals/b5/92/b9/b592b9f816d544c416aca988587beac2.jpg" alt="Brawl Stars">
+            <div class="card-content">
+                <h3>Brawl Stars</h3>
+                <p>4.2 ★</p>
+            </div>
+        </div>
+        <!-- Платные приложения -->
+        <div class="app-card" data-type="paid">
+            <img src="https://avatars.mds.yandex.net/i?id=40c774db438cc9da759406c99439b757078994f6-5163188-images-thumbs&n=13"
+                alt="PUBG Mobile">
+            <div class="card-content">
+                <h3>PUBG Mobile</h3>
+                <p>4.7 ★</p>
+            </div>
+        </div>
+        <div class="app-card" data-type="paid">
+            <img src="https://avatars.mds.yandex.net/i?id=a1df5e8ae86341ac2828d24f86ff7402_l-9842162-images-thumbs&n=13"
+                alt="Valorant">
+            <div class="card-content">
+                <h3>Valorant</h3>
+                <p>4.8 ★</p>
+            </div>
+        </div>
+        <div class="app-card" data-type="paid">
+            <img src="https://assetsio.gnwcdn.com/TLOZ_TearsOfTheKingdom_28032023_scrn_28.png?width=1920&height=1920&fit=bounds&quality=80&format=jpg&auto=webp"
+                alt="The Legend of Zelda">
+            <div class="card-content">
+                <h3>The Legend of Zelda: Tears of the Kingdom</h3>
+                <p>4.0 ★</p>
+            </div>
+        </div>
+        <div class="app-card" data-type="paid">
+            <img src="https://avatars.mds.yandex.net/i?id=18fce26b362481303a148dfe12b09db5_l-5208951-images-thumbs&n=13"
+                alt="Free Fire">
+            <div class="card-content">
+                <h3>Free Fire</h3>
+                <p>4.4 ★</p>
+            </div>
+        </div>
+        <div class="app-card" data-type="paid">
+            <img src="https://avatars.mds.yandex.net/i?id=36ae41ebaed7e2f97e7f5624a15cc34c_l-5243009-images-thumbs&n=13"
+                alt="Clash of Clans">
+            <div class="card-content">
+                <h3>Clash of Clans</h3>
+                <p>4.9 ★</p>
+            </div>
+        </div>
+        <div class="app-card" data-type="paid">
+            <img src="https://i.ytimg.com/vi/YDWerrc1kro/maxresdefault.jpg" alt="Elden Ring">
+            <div class="card-content">
+                <h3>Elden Ring</h3>
+                <p>5.0 ★</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
